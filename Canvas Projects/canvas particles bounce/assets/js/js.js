@@ -11,7 +11,7 @@ let particalesArray = [];
 
 const numberOfParticles = 1000;
 
-let colours = ['#00FFFF', '#FF00FF', '#FFFF00']
+let colours = ['#00FFFF', '#FF00FF', '#FFFF00'];
 
 
 class Particle {

@@ -4,6 +4,19 @@
   margin: 0px;
 }
 
-#firstCanvas {
+#myCanvas {
   border: 10px solid black;
+  background: blue;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#titleSheild {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 120px;
 }
