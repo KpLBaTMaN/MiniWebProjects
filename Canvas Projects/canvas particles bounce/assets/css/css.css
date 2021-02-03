@@ -4,6 +4,10 @@
   margin: 0px;
 }
 
+body {
+  font-family: Sans-serif;
+}
+
 #myCanvas {
   border: 10px solid black;
   background: blue;
@@ -18,5 +22,19 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 120px;
+  font-size: 150px;
+  border: 10px solid black;
+
+  line-height: 110px;
+  white-space: nowrap;
+}
+
+#titleSheild::before {
+  content: "from the rain";
+  position: absolute;
+  bottom: -100px;
+  text-align: center;
+  width: 100%;
+  font-size: 50px;
+  color: white;
 }
