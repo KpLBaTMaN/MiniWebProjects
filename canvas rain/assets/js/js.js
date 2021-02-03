@@ -38,10 +38,6 @@ class Particle {
             this.x = 0 - 10;
         }
 
-    
-
-
-
         this.weight += 0.01;
         this.y += this.weight;
         this.x += this.directionX;
@@ -85,7 +81,6 @@ function animate(){
         particalesArray[i].update();
     }
 
-   
     requestAnimationFrame(animate); //recursion
 }
 
