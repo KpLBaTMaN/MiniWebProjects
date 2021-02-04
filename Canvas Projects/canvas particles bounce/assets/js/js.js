@@ -9,11 +9,11 @@ canvas.height = window.innerHeight;
 
 let particalesArray = [];
 
-const numberOfParticles = 1000;
+const numberOfParticles = 500;
 
-let colours = ['#00FFFF', '#FF00FF', '#FFFF00'];
+let colours = ['#00FF00', '#0000FF', '#FFFF00'];
 
-let titleSheild = document.getElementById('titleSheild');
+let titleSheild = document.getElementById('titleShield');
 let titleSheildInfo = titleSheild.getBoundingClientRect();
 
 console.log(titleSheild);
@@ -42,7 +42,7 @@ class Particle {
         this.size = Math.random() * 5 + 2;
         this.carryWeight = Math.random() * 1 + 1;
         this.weight = this.carryWeight;
-        this.directionX = Math.random() * 1 + 1;
+        this.directionX = Math.random() * -2 + 0;
         this.colour = colours[Math.floor(Math.random() * particalesArray.length)];
 
     }
