@@ -7,19 +7,11 @@ canvas.height = window.innerHeight;
 
 let particlesArray = [];
 
-
-let colours = ['#00FF00', '#0000FF', '#FFFF00'];
-
 //Options
-const numberOfParticles = 50;           // Number of particles to draw
-var size = 3;                           // Particle size
-var colour = '#fff';                    // Particle color
-var min_speed = 1;      // Particle min speed
-var max_speed = 3;      // Particle max speed
-var line_distance = 20; // This is the max distance between two particles
-
-
-
+const numberOfParticles =20;                // Number of particles to draw
+const size = 10;                            // Particle size
+const colour = 'white';                     // Particle color
+const speed = 2;                            // Particle speed
 
 //creates all objects before processing
 function init(){
@@ -27,21 +19,42 @@ function init(){
 
     //Produces all the particles
     for (i = 0; i < numberOfParticles; i++){
+        
         const tempX = Math.random() * canvas.width;         //random x on screen
         const tempY = Math.random() * canvas.height;        //random y on screen
-        particlesArray.push(new Particle(tempX, tempY));    //push onto the array
+        
+
+        particlesArray.push(new Particle(tempX, tempY, colour, size, speed));    //push onto the array
 
     }
 }
 
 
+//Connects the lines togther for each particle on the screen
+function joinLines(){
+
+    for (k = 0; k < particlesArray.length; k++){
+        for(j = k; j < particlesArray.length; j++){
+            ctx.strokeStyle = 'rgba( 0, 255, 150, 1)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[k].x, particlesArray[k].y);
+            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+            ctx.stroke();
+        }
+    }
+
+}
+
+
+//Order matters when animate - mostly with draw layers
 function animate(){
 
     //background - colour black and fade
     ctx.fillStyle = 'rgba(0, 0, 0)';
     ctx.fillRect(0,0, canvas.width, canvas.height);
 
-
+    joinLines();
     //shows all the particles on the screen
     for (i = 0; i < particlesArray.length ; i++){
         particlesArray[i].draw();
@@ -60,8 +73,6 @@ function main(){
 
 //Run first
 main();
-
-
 
 //when the user resizes the webpage - do this.
 window.addEventListener('resize', function(){

@@ -7,15 +7,15 @@ class Particle {
      * @param {INT} y 
      * x and y for position on the canvas
      */
-    constructor(x, y){
+    constructor(x, y, colour, size, movement){
 
         this.x = x;                         //X on canvas
         this.y = y;                         //Y on canvas
 
-        this.size = Math.random() * 5 + 2;  //Size of each particle
-        this.colour = 'white';              //Colour of the particle
+        this.size = size;                   //Size of each particle
+        this.colour = colour;               //Colour of the particle
 
-        this.movementSpeed = 2;                  //MovementSpeed of particle
+        this.movementSpeed = movement;      //MovementSpeed of particle
 
         this.velocity_x = (Math.random() * -this.movementSpeed) + (Math.random() * this.movementSpeed);
         this.velocity_y = (Math.random() * -this.movementSpeed) + (Math.random() * this.movementSpeed);
