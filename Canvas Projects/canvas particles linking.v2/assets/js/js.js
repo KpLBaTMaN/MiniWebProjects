@@ -1,9 +1,16 @@
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
+
+
+//<div>
+var divElement = document.getElementById('Instructions'); 
+
 //Set up window the size of the screen
 canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.height = window.innerHeight - divElement.offsetHeight ;
+ 
+
 
 let particlesArray = [];
 
@@ -26,6 +33,9 @@ var left_press = false;
 var up_press = false;
 var right_press = false;
 var down_press = false;
+
+
+
 
 
 //creates all objects before processing
@@ -130,9 +140,16 @@ main();
 //when the user resizes the webpage - do this.
 window.addEventListener('resize', function(){
 
+    //<div>
+    var divElement = document.getElementById('Instructions'); 
+
+    //console.log(divElement.offsetHeight); //height of div 
+
+
+    
     //update canvas size
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.height = window.innerHeight - divElement.offsetHeight ;
    
     //recreates the particles
     init();
