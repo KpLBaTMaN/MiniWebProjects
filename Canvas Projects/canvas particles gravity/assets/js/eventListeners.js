@@ -1,9 +1,7 @@
 window.addEventListener('keydown',this.checkdown,false);
 window.addEventListener('keyup',this.checkup,false);
-window.addEventListener('mousedown', init, false);
+//window.addEventListener('mousedown', init, false);
 window.addEventListener('resize', this.rescaleCanvas);
-
-
 
 
 
@@ -52,5 +50,5 @@ function rescaleCanvas(){
     //update canvas size
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-  
+
 }
