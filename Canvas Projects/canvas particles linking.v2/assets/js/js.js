@@ -86,7 +86,7 @@ function joinLines(){
 function animate(){
 
     //background - colour black
-    ctx.fillStyle = 'rgb(0, 0, 0)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
     ctx.fillRect(0,0, canvas.width, canvas.height);
 
     
