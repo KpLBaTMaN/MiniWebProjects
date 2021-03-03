@@ -1,13 +1,12 @@
 //class particle - used for creating cirles on the canvas
-class Particle {
-
+class Planetary {
     /*
      * 
      * @param {INT} x 
      * @param {INT} y 
      * x and y for position on the canvas
      */
-    constructor(x, y, colour, size, movement){
+    constructor(x, y, colour, size, movement, range){
 
         this.x = x;                         //X on canvas
         this.y = y;                         //Y on canvas
@@ -16,9 +15,12 @@ class Particle {
         this.colour = colour;               //Colour of the particle
 
         this.movementSpeed = movement;      //MovementSpeed of particle
+        this.range = range;
 
         this.velocity_x = (Math.random() * -this.movementSpeed) + (Math.random() * this.movementSpeed);
         this.velocity_y = (Math.random() * -this.movementSpeed) + (Math.random() * this.movementSpeed);
+
+        this.circle = Math.PI * 2;
         
        
         //Math.random() * 1 + 1
@@ -50,22 +52,27 @@ class Particle {
         if(this.x < 0 ) this.velocity_x *= -1;              //left side
         if(this.y < 0) this.velocity_y *= -1;               //top side
         if(this.y > canvas.height) this.velocity_y *= -1;   //bottom side
-        
+
 
     }
-
-
-    
-
 
     //draw each object
     draw(){
         ctx.fillStyle = this.colour;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.size, 0, this.circle);
         ctx.closePath();
         ctx.fill();
 
-        
+
+        //RANGE finder
+        ctx.strokeStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.range, 0, this.circle);
+        ctx.closePath();
+        ctx.stroke();
     }
 }
+
+
+
