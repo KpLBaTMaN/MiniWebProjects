@@ -2,10 +2,22 @@
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
+
+
+//DIV - element
+var divElement = document.getElementById('divDistance'); 
+var h1Element = document.getElementById('distance'); 
+
+
+
+
 //Set up window the size of the screen - full screen
 canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.height = window.innerHeight -  divElement.offsetHeight;
  
+ 
+
+
 
 //OPTIONS - variables for options in the canvas
 //Options planetary

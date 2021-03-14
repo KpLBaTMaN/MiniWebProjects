@@ -36,7 +36,8 @@ function starsCollision(){
         for(j = 0; j < starArray.length; j++){
             //if a planet is in the range of one another - pull 
 
-            console.log(getDistance(starArray[j].x,starArray[j].y, planetaryArray[k].x, planetaryArray[k].y));
+            h1Element.innerHTML = getDistance(starArray[j].x,starArray[j].y, planetaryArray[k].x, planetaryArray[k].y);
+            //console.log(getDistance(starArray[j].x,starArray[j].y, planetaryArray[k].x, planetaryArray[k].y));
 
         }
     }
