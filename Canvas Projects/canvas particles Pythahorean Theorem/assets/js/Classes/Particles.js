@@ -1,4 +1,4 @@
-//class particle - used for creating cirles on the canvas
+//class Planetary
 class Planetary {
     /*
      * 
@@ -21,9 +21,6 @@ class Planetary {
         this.velocity_y = (Math.random() * -this.movementSpeed) + (Math.random() * this.movementSpeed);
 
         this.circle = Math.PI * 2;
-        
-       
-        //Math.random() * 1 + 1
 
     }
 
