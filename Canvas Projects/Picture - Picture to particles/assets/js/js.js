@@ -8,6 +8,12 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+
+
+//CONTROLS
+let particalIncrease = 10; //controls the space between pixels
+let particalSize = 5;
+
 //MOUSE
 let mouse = {
     x:null,
@@ -45,8 +51,8 @@ function drawImageParticles(){
     
             this.x = x + canvas.width/2 - imageWidth *2;                         //X on canvas
             this.y = y + canvas.height/2 - imageHeight *2;                       //Y on canvas
-            this.size = 2;                   //Size of each particle
-            this.colour = colour;               //Colour of the particle
+            this.size = particalSize;                                           //Size of each particle
+            this.colour = colour;                                               //Colour of the particle
     
             this.defaultX = x + canvas.width/2 - imageWidth *2
             this.defaultY = y + canvas.height/2 - imageHeight *2;
@@ -77,6 +83,7 @@ function drawImageParticles(){
             let forceDirectionX = dx / distance;
             let forceDirectionY = dy / distance;
 
+            
             const topDistance = 100;
             let force = (topDistance - distance ) / topDistance;
             if(force < 0) force = 0;
@@ -84,22 +91,27 @@ function drawImageParticles(){
             let directionX = (forceDirectionX * force * this.density * 0.6);
             let directionY = (forceDirectionY * force * this.density* 0.6);
 
+            
             if(distance < mouse.radius + this.size){
                 this.x -= directionX;
                 this.y -= directionY;
 
-            }else{
-                console.log("YES");
-                if(this.x !== this.baseX){
-                    let dx = this.x - this.baseX;
-                    this.x -= dx/20;;
-                }
-                if(this.y !== this.baseY){
-                    let dy = this.y - this.baseY;
-                    this.y -= dy/20;;
-                }
             }
-
+            
+            else{
+                
+                if(this.x !== this.defaultX){
+                    let dx = this.x - this.defaultX;
+                    this.x -= dx/20;
+                }
+                
+                if(this.y !== this.defaultY){
+                    let dy = this.y - this.defaultY;
+                    this.y -= dy/20;
+                }
+                
+            }
+        
             this.draw();
         }
     
@@ -112,7 +124,6 @@ function drawImageParticles(){
         console.log(dataImage.length);
         
         for(let y = 0, y2 = dataImage.height; y < y2; y++){
-            console.log("y loop");
             for(let x = 0, x2 = dataImage.width; x < x2; x++){
                 if(dataImage.data[(y * 4 * dataImage.width) + (x * 4) + 3] > 128) {
                     let positionX = x;
@@ -121,14 +132,14 @@ function drawImageParticles(){
                     dataImage.data[(y * 4 * dataImage.width) + (x * 4) + 1] + "," + 
                     dataImage.data[(y * 4 * dataImage.width) + (x * 4) + 2] + ")";
                     
-                    console.log("Adding particle" );
-                    particleArray.push(new Particle(positionX * 4, positionY * 4, color));
+                    particleArray.push(new Particle(positionX * particalIncrease, positionY * particalIncrease, color));
                 }
             }
         }
     }
 
     function animate(){
+     
        
         requestAnimationFrame(animate);
         ctx.fillStyle = 'rgba(0,0,0,.05)';
