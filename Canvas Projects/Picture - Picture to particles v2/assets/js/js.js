@@ -14,6 +14,7 @@ canvas.height = window.innerHeight;
 let particalIncrease = 5; //controls the space between pixels
 let particalSize = particalIncrease +1;
 
+
 //MOUSE
 let mouse = {
     x:null,
@@ -59,7 +60,7 @@ function drawImageParticles(){
             this.defaultX = x + canvas.width/2 - imageWidth *2
             this.defaultY = y + canvas.height/2 - imageHeight *2;
             
-            this.density = 2;
+            this.density = 10;
     
         }
 
@@ -102,22 +103,22 @@ function drawImageParticles(){
             if(distance < mouse.radius + this.size){
                 this.x -= directionX;
                 this.y -= directionY;
-                this.size = particalSize/2;
+                //this.size = particalSize/2;
 
             }
             
             else{
-                this.size = particalSize;
+                //this.size = particalSize;
                 
-                if(this.x !== this.defaultX){
-                    let dx = this.x - this.defaultX;
-                    this.x -= dx/20;
-                }
+                // if(this.x !== this.defaultX){
+                //     let dx = this.x - this.defaultX;
+                //     this.x -= dx/20;
+                // }
                 
-                if(this.y !== this.defaultY){
-                    let dy = this.y - this.defaultY;
-                    this.y -= dy/20;
-                }
+                // if(this.y !== this.defaultY){
+                //     let dy = this.y - this.defaultY;
+                //     this.y -= dy/20;
+                // }
                 
             }
         
@@ -154,19 +155,17 @@ function drawImageParticles(){
      
        
         requestAnimationFrame(animate);
-        ctx.fillStyle = 'rgba(0,0,0, 0.07)';
+        ctx.fillStyle = 'rgba(255,255,255, 0.05)';
         ctx.fillRect(0,0, innerWidth, innerHeight);
 
    
         ctx.drawImage(heart, particleArray[0].x, particleArray[0].y, dataImage.width*particalIncrease ,dataImage.height*particalIncrease );
+      // ctx.drawImage(heart, particleArray[0].x + 500, particleArray[0].y + 500, dataImage.width ,dataImage.height-200);
         //particales
         for(let i = 0; i < particleArray.length; i++){
             particleArray[i].update();
         }
-
-        //image
-        
-
+    
         
     }
     init();
@@ -205,10 +204,15 @@ heart.addEventListener('load', (event) => {
 //EVENT LISTEN
 window.addEventListener('resize', this.rescaleCanvas);
 
+
+
+
 function rescaleCanvas(){
     //update canvas size
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
+
+
 
 
