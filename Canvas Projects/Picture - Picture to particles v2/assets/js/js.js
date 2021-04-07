@@ -200,11 +200,8 @@ heart.addEventListener('load', (event) => {
     ctx.drawImage(heart, canvas.height,canvas.width);
 });
 
-
 //EVENT LISTEN
 window.addEventListener('resize', this.rescaleCanvas);
-
-
 
 
 function rescaleCanvas(){
@@ -212,7 +209,3 @@ function rescaleCanvas(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
-
-
-
-
