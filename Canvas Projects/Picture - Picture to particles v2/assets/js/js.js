@@ -11,8 +11,8 @@ canvas.height = window.innerHeight;
 
 
 //CONTROLS
-let particalIncrease = 4; //controls the space between pixels
-let particalSize = 2;
+let particalIncrease = 5; //controls the space between pixels
+let particalSize = particalIncrease +1;
 
 //MOUSE
 let mouse = {
@@ -35,6 +35,8 @@ function drawImageParticles(){
 
     console.log("Width of image: " + png.width);
     console.log("Height of image: " + png.height);
+
+
     const dataImage = ctx.getImageData(0,0, imageWidth, imageHeight);
     console.log(dataImage);
     
@@ -65,7 +67,8 @@ function drawImageParticles(){
         //draw each object
         draw(){
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillRect(this.x, this.y, this.size, this.size);
+            //ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.closePath();
             ctx.fill();
         }
@@ -76,30 +79,46 @@ function drawImageParticles(){
         update(){
             //console.log(parseInt("10"));
 
+
+            //IMPORTANT - for each colour of particle
+            ctx.fillStyle = this.colour;
+
             let dx = mouse.x - this.x;
             let dy = mouse.y - this.y;
 
             let distance = Math.sqrt(dx * dx + dy * dy);
+            let forceDirectionX = dx / distance;
+            let forceDirectionY = dy / distance;
 
             
-        
+            const topDistance = 100;
+            let force = (topDistance - distance ) / topDistance;
+            if(force < 0) force = 0;
+
+            let directionX = (forceDirectionX * force * this.density * 0.6);
+            let directionY = (forceDirectionY * force * this.density* 0.6);
 
             
             if(distance < mouse.radius + this.size){
-                ctx.fillStyle = '#FFFFFF';
-            
+                this.x -= directionX;
+                this.y -= directionY;
+                this.size = particalSize/2;
 
             }
             
             else{
-               
+                this.size = particalSize;
                 
-                ctx.fillStyle =  'blue';
-                   
-                   
-               
+                if(this.x !== this.defaultX){
+                    let dx = this.x - this.defaultX;
+                    this.x -= dx/20;
+                }
                 
-          
+                if(this.y !== this.defaultY){
+                    let dy = this.y - this.defaultY;
+                    this.y -= dy/20;
+                }
+                
             }
         
             this.draw();
@@ -126,19 +145,29 @@ function drawImageParticles(){
                 }
             }
         }
+
+        console.log("Loaded: " + (dataImage.height * dataImage.width) + " particales");
     }
 
     function animate(){
+        //console.log("Running")
      
        
         requestAnimationFrame(animate);
-        ctx.fillStyle = 'rgba(0,0,0,.05)';
+        ctx.fillStyle = 'rgba(0,0,0, 0.07)';
         ctx.fillRect(0,0, innerWidth, innerHeight);
 
+   
+        ctx.drawImage(heart, particleArray[0].x, particleArray[0].y, dataImage.width*particalIncrease ,dataImage.height*particalIncrease );
+        //particales
         for(let i = 0; i < particleArray.length; i++){
             particleArray[i].update();
         }
 
+        //image
+        
+
+        
     }
     init();
     animate();
@@ -147,18 +176,29 @@ function drawImageParticles(){
  
 //IMAGE
 const png = new Image();
-
-const fileDirImage = 'assets/image/image.jpg';
+const heart = new Image();
+/*
+const fileDirImage = 'assets/image/Image.jpg';
 
 png.src = fileDirImage;
+*/
+png.src = image1;
+heart.src = image2;
 //console.log(image.src);
 //console.log(image);
+
+
 
 png.addEventListener('load', (event) => {
     console.log('page has loaded');
     ctx.drawImage(png, 0,0);
     drawImageParticles();
 
+});
+
+heart.addEventListener('load', (event) => {
+    console.log('heart loaded');
+    ctx.drawImage(heart, canvas.height,canvas.width);
 });
 
 
@@ -170,3 +210,5 @@ function rescaleCanvas(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
+
+
