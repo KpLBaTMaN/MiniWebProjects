@@ -11,8 +11,8 @@ canvas.height = window.innerHeight;
 
 
 //CONTROLS
-let particalIncrease = 10; //controls the space between pixels
-let particalSize = 5;
+let particalIncrease = 4; //controls the space between pixels
+let particalSize = 2;
 
 //MOUSE
 let mouse = {
@@ -74,42 +74,32 @@ function drawImageParticles(){
          * update is frame dependant on how fast the game runs
          */
         update(){
-            ctx.fillStyle = this.colour;
+            //console.log(parseInt("10"));
 
             let dx = mouse.x - this.x;
             let dy = mouse.y - this.y;
 
             let distance = Math.sqrt(dx * dx + dy * dy);
-            let forceDirectionX = dx / distance;
-            let forceDirectionY = dy / distance;
 
             
-            const topDistance = 100;
-            let force = (topDistance - distance ) / topDistance;
-            if(force < 0) force = 0;
-
-            let directionX = (forceDirectionX * force * this.density * 0.6);
-            let directionY = (forceDirectionY * force * this.density* 0.6);
+        
 
             
             if(distance < mouse.radius + this.size){
-                this.x -= directionX;
-                this.y -= directionY;
+                ctx.fillStyle = '#FFFFFF';
+            
 
             }
             
             else{
+               
                 
-                if(this.x !== this.defaultX){
-                    let dx = this.x - this.defaultX;
-                    this.x -= dx/20;
-                }
+                ctx.fillStyle =  'blue';
+                   
+                   
+               
                 
-                if(this.y !== this.defaultY){
-                    let dy = this.y - this.defaultY;
-                    this.y -= dy/20;
-                }
-                
+          
             }
         
             this.draw();
@@ -158,7 +148,7 @@ function drawImageParticles(){
 //IMAGE
 const png = new Image();
 
-const fileDirImage = 'assets/image/download.png';
+const fileDirImage = 'assets/image/image.jpg';
 
 png.src = fileDirImage;
 //console.log(image.src);
@@ -179,5 +169,4 @@ function rescaleCanvas(){
     //update canvas size
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
 }
