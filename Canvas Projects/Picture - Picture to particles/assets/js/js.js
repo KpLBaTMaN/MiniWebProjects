@@ -158,9 +158,7 @@ function drawImageParticles(){
 //IMAGE
 const png = new Image();
 
-const fileDirImage = 'assets/image/download.png';
-
-png.src = fileDirImage;
+png.src = image1;
 //console.log(image.src);
 //console.log(image);
 
